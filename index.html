@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CISO Connect · Asociación de Responsables de Seguridad de la Información</title>
+<meta name="description" content="Asociación independiente de CISOs en activo. Convocatorias privadas, asesoramiento entre pares, voz colectiva ante el regulador. Bajo regla de Chatham House.">
+<meta name="theme-color" content="#ece4d3">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --paper: #ece4d3;
+    --paper-deep: #e1d7bf;
+    --paper-dark: #d4c9ae;
+    --ink: #17171a;
+    --ink-soft: #3a3a3d;
+    --ink-mute: #7a7363;
+    --rule: #c7ba9e;
+    --accent: #5c1a20;
+    --accent-ink: #7a242c;
+  }
+
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    font-feature-settings: 'ss01';
+  }
+
+  /* paper grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0 0.11 0 0 0 0.14 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+  }
+
+  main, nav, footer, header { position: relative; z-index: 2; }
+
+  .font-display { font-family: 'Instrument Serif', ui-serif, Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+  .font-italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  .meta {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .text-accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); }
+  .bg-paper-deep { background: var(--paper-deep); }
+  .bg-paper-dark { background: var(--paper-dark); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-ink-mute { color: var(--ink-mute); }
+  .border-rule { border-color: var(--rule); }
+
+  .hairline-t { border-top: 1px solid var(--rule); }
+  .hairline-b { border-bottom: 1px solid var(--rule); }
+
+  .display-xl {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    line-height: 0.93;
+    letter-spacing: -0.025em;
+  }
+
+  .dropcap::first-letter {
+    font-family: 'Instrument Serif', serif;
+    float: left;
+    font-size: 5.4em;
+    line-height: 0.82;
+    padding: 0.08em 0.12em 0 0;
+    color: var(--accent);
+  }
+
+  .rise { opacity: 0; transform: translateY(16px); animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  .fade { opacity: 0; animation: fade 1.2s ease-out forwards; }
+  @keyframes fade { to { opacity: 1; } }
+
+  .link-reveal { position: relative; display: inline-block; }
+  .link-reveal::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-reveal:hover::after { transform: scaleX(1); }
+  .link-reveal.active::after { transform: scaleX(1); background: var(--accent); }
+
+  .card-hover { transition: background 0.5s ease; }
+  .card-hover:hover { background: var(--paper-dark); }
+
+  .pillar-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 2.75rem;
+    line-height: 1;
+  }
+
+  .btn-ink {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+    display: inline-block;
+  }
+  .btn-ink:hover { background: var(--accent); }
+
+  .btn-ghost {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 17px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+  .sigil {
+    width: 38px; height: 38px;
+    border: 1px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .form-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    width: 100%;
+    transition: border-color 0.3s ease;
+    outline: none;
+  }
+  .form-input:focus { border-bottom-color: var(--accent); }
+  .form-input::placeholder { color: var(--ink-mute); }
+
+  .scroll-fade { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .scroll-fade.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .dropcap::first-letter { font-size: 4.2em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ——————————— NAV ——————————— -->
+<nav class="px-6 md:px-14 py-6 flex items-center justify-between hairline-b fade">
+  <a href="#top" class="flex items-baseline gap-3">
+    <span class="sigil" aria-hidden="true">C</span>
+    <span class="font-display text-[22px] leading-none">CISO Connect</span>
+  </a>
+  <div class="hidden lg:flex items-center gap-9 meta text-ink-soft">
+    <a href="#manifiesto" class="link-reveal">Manifiesto</a>
+    <a href="#pilares" class="link-reveal">Pilares</a>
+    <a href="#consejo" class="link-reveal">Consejo</a>
+    <a href="#convocatorias" class="link-reveal">Convocatorias</a>
+    <a href="#publicaciones" class="link-reveal">Publicaciones</a>
+  </div>
+  <a href="#membresia" class="meta text-accent link-reveal">Solicitar membresía →</a>
+</nav>
+
+<main id="top">
+
+<!-- ——————————— HERO ——————————— -->
+<section class="px-6 md:px-14 pt-14 md:pt-24 pb-20 md:pb-28">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="flex items-center justify-between mb-14 md:mb-24 rise" style="animation-delay: 0.05s">
+      <div class="meta text-ink-mute">Vol. III · No. 2</div>
+      <div class="meta text-ink-mute hidden md:block">Madrid · Barcelona · Bilbao</div>
+      <div class="meta text-ink-mute">MMXXVI</div>
+    </div>
+
+    <h1 class="display-xl text-[clamp(2.75rem,10.5vw,10rem)] rise" style="animation-delay: 0.18s">
+      Una asociación<br>
+      <span class="font-italic-serif text-accent">de CISOs,</span><br>
+      convocada bajo<br>
+      regla de <span class="font-italic-serif">Chatham House.</span>
+    </h1>
+
+    <div class="mt-14 md:mt-20 hairline-t pt-8 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 rise" style="animation-delay: 0.4s">
+      <div class="md:col-span-4">
+        <div class="meta text-ink-mute mb-3">Qué somos</div>
+        <p class="font-display text-2xl leading-tight">
+          Un espacio privado de deliberación entre responsables de seguridad en activo.
+        </p>
+      </div>
+      <div class="md:col-span-4 md:col-start-6">
+        <div class="meta text-ink-mute mb-3">Qué no somos</div>
+        <p class="text-ink-soft text-[17px] leading-relaxed">
+          No somos una comunidad abierta. Ni un foro patrocinado. Ni un grupo de influencia comercial. No aceptamos financiación de proveedores.
+        </p>
+      </div>
+      <div class="md:col-span-3 md:col-start-10 flex md:justify-end items-start">
+        <a href="#membresia" class="btn-ink">Proceso de admisión</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ——————————— STATS STRIP ——————————— -->
+<section class="hairline-t hairline-b bg-paper-deep">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4">
+    <div class="p-8 md:p-10 border-r hairline-b md:hairline-b-0" style="border-right-color: var(--rule); border-right-width: 1px;">
+      <div class="meta text-ink-mute mb-3">Fundada</div>
+      <div class="font-display text-4xl md:text-5xl">2024</div>
+    </div>
+    <div class="p-8 md:p-10" style="border-right: 1px solid var(--rule);">
+      <div class="meta text-ink-mute mb-3">Miembros activos</div>
+      <div class="font-display text-4xl md:text-5xl">180<span class="text-accent font-italic-serif text-3xl">.</span></div>
+    </div>
+    <div class="p-8 md:p-10" style="border-right: 1px solid var(--rule); border-top: 1px solid var(--rule);" class="md:!border-t-0">
+      <div class="meta text-ink-mute mb-3">Industrias</div>
+      <div class="font-display text-4xl md:text-5xl">22</div>
+    </div>
+    <div class="p-8 md:p-10" style="border-top: 1px solid var(--rule);">
+      <div class="meta text-ink-mute mb-3">Financiación externa</div>
+      <div class="font-display text-4xl md:text-5xl font-italic-serif text-accent">Ninguna.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————— MANIFIESTO ——————————— -->
+<section id="manifiesto" class="px-6 md:px-14 py-24 md:py-36 scroll-fade">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
+
+    <div class="md:col-span-3">
+      <div class="meta text-accent mb-5">§ 01 · Manifiesto</div>
+      <h2 class="display-xl text-4xl md:text-5xl">
+        Por qué<br>
+        <span class="font-italic-serif">existimos.</span>
+      </h2>
+    </div>
+
+    <div class="md:col-span-8 md:col-start-5">
+      <p class="dropcap text-[17px] md:text-lg leading-[1.72] text-ink-soft">
+        El CISO es uno de los responsables más expuestos del organigrama moderno, y ocupa al mismo tiempo uno de los puestos con menor red de iguales. Entre consejos de administración, reguladores, proveedores y equipos propios, el espacio para la deliberación franca entre pares se ha ido reduciendo hasta casi desaparecer.
+      </p>
+      <p class="mt-7 text-[17px] md:text-lg leading-[1.72] text-ink-soft">
+        CISO Connect recupera ese espacio. Somos una asociación de profesionales en activo, convocada por nosotros mismos, sin intermediarios ni agenda comercial, y operada bajo regla de Chatham House desde su primer acto.
+      </p>
+      <p class="mt-7 text-[17px] md:text-lg leading-[1.72] text-ink-soft">
+        Nuestro compromiso es con el oficio, no con su mercado. Con la decisión difícil, no con el titular cómodo. Con el interés del miembro, no con el del patrocinador.
+      </p>
+
+      <blockquote class="mt-12 pl-7 border-l-2 border-rule font-italic-serif text-2xl md:text-[34px] leading-[1.25] text-ink">
+        "La confidencialidad entre pares no es un privilegio. Es la condición mínima para que cualquier conversación útil sobre seguridad pueda tener lugar."
+      </blockquote>
+      <p class="meta text-ink-mute mt-5">— Acta fundacional, marzo de 2024</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ——————————— PILARES ——————————— -->
+<section id="pilares" class="bg-paper-deep hairline-t hairline-b px-6 md:px-14 py-24 md:py-32 scroll-fade">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+      <div>
+        <div class="meta text-accent mb-5">§ 02 · Pilares</div>
+        <h2 class="display-xl text-4xl md:text-[78px]">Cómo operamos.</h2>
+      </div>
+      <div class="meta text-ink-mute">Cuatro líneas · Una asociación</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px" style="background: var(--rule);">
+      <!-- I -->
+      <article class="bg-paper-deep p-8 md:p-12 card-hover">
+        <div class="pillar-num mb-6">I.</div>
+        <h3 class="font-display text-[32px] leading-tight mb-4">Convocatorias privadas</h3>
+        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
+          Encuentros trimestrales sin agenda comercial ni presencia de proveedores. Mesas reducidas, orden del día acordado entre miembros, actas anónimas. Cuatro ediciones al año en Madrid, Barcelona y Bilbao, con rotación bienal de sede.
+        </p>
+        <div class="mt-8 meta text-ink-mute">04 convocatorias / año</div>
+      </article>
+      <!-- II -->
+      <article class="bg-paper-deep p-8 md:p-12 card-hover">
+        <div class="pillar-num mb-6">II.</div>
+        <h3 class="font-display text-[32px] leading-tight mb-4">Asesoramiento entre pares</h3>
+        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
+          Círculos cerrados de seis a ocho miembros que se reúnen mensualmente para exponer decisiones difíciles: reorganizaciones, incidentes, presupuesto, relación con el consejo. Confidencialidad absoluta y moderación rotativa.
+        </p>
+        <div class="mt-8 meta text-ink-mute">12 sesiones / año · por círculo</div>
+      </article>
+      <!-- III -->
+      <article class="bg-paper-deep p-8 md:p-12 card-hover">
+        <div class="pillar-num mb-6">III.</div>
+        <h3 class="font-display text-[32px] leading-tight mb-4">Publicaciones e investigación</h3>
+        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
+          Revisión trimestral del estado del sector e informes de posición sobre regulación en curso. Escritos por miembros, revisados por miembros. Sin analistas externos. Sin patrocinadores. Sin secciones publicitarias.
+        </p>
+        <div class="mt-8 meta text-ink-mute">04 ediciones / año</div>
+      </article>
+      <!-- IV -->
+      <article class="bg-paper-deep p-8 md:p-12 card-hover">
+        <div class="pillar-num mb-6">IV.</div>
+        <h3 class="font-display text-[32px] leading-tight mb-4">Representación institucional</h3>
+        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
+          Interlocución formal con INCIBE, CCN-CERT, AEPD y ENISA. La asociación articula una voz única en consultas públicas sobre NIS2, CRA, DORA y normativa derivada, con posiciones razonadas y firmadas colegiadamente.
+        </p>
+        <div class="mt-8 meta text-ink-mute">Consultas públicas · Posicionamientos</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ——————————— CONSEJO ——————————— -->
+<section id="consejo" class="px-6 md:px-14 py-24 md:py-36 scroll-fade">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-14 md:mb-20">
+      <div class="md:col-span-5">
+        <div class="meta text-accent mb-5">§ 03 · Consejo rector</div>
+        <h2 class="display-xl text-4xl md:text-[78px]">
+          Elegidos<br>
+          <span class="font-italic-serif">entre iguales.</span>
+        </h2>
+      </div>
+      <div class="md:col-span-6 md:col-start-7 self-end">
+        <p class="text-ink-soft leading-[1.7] text-[17px]">
+          Nueve miembros del consejo rector, elegidos entre y por sus iguales, con rotación bienal y límite de dos mandatos. Todos ostentan responsabilidades ejecutivas en activo en compañías cotizadas, banca, sanidad, infraestructura crítica e industria.
+        </p>
+        <p class="text-ink-soft leading-[1.7] text-[17px] mt-4">
+          Por política interna, la afiliación de los miembros no se hace pública sin su consentimiento individual. Lo que sigue es la composición agregada del consejo.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px hairline-t hairline-b" style="background: var(--rule);">
+
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-accent mb-4">Presidencia</div>
+        <div class="font-display text-2xl leading-tight mb-2">Global CISO</div>
+        <div class="text-ink-soft text-[14px]">Banca mayorista · IBEX</div>
+      </div>
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-accent mb-4">Vicepresidencia</div>
+        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
+        <div class="text-ink-soft text-[14px]">Utility cotizada · IBEX</div>
+      </div>
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-accent mb-4">Secretaría</div>
+        <div class="font-display text-2xl leading-tight mb-2">Director de Seguridad</div>
+        <div class="text-ink-soft text-[14px]">Infraestructura crítica</div>
+      </div>
+
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-ink-mute mb-4">Vocal · Publicaciones</div>
+        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
+        <div class="text-ink-soft text-[14px]">Industria farmacéutica</div>
+      </div>
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-ink-mute mb-4">Vocal · Regulación</div>
+        <div class="font-display text-2xl leading-tight mb-2">Head of Security</div>
+        <div class="text-ink-soft text-[14px]">Fintech regulada</div>
+      </div>
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-ink-mute mb-4">Vocal · Círculos</div>
+        <div class="font-display text-2xl leading-tight mb-2">Global CISO</div>
+        <div class="text-ink-soft text-[14px]">Retail internacional</div>
+      </div>
+
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-ink-mute mb-4">Vocal · Convocatorias</div>
+        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
+        <div class="text-ink-soft text-[14px]">Sanidad privada</div>
+      </div>
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-ink-mute mb-4">Vocal · Tesorería</div>
+        <div class="font-display text-2xl leading-tight mb-2">Director de Seguridad</div>
+        <div class="text-ink-soft text-[14px]">Aseguradora · IBEX</div>
+      </div>
+      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
+        <div class="meta text-ink-mute mb-4">Vocal · Admisiones</div>
+        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
+        <div class="text-ink-soft text-[14px]">Logística y transporte</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ——————————— CONVOCATORIAS ——————————— -->
+<section id="convocatorias" class="bg-paper-deep hairline-t hairline-b px-6 md:px-14 py-24 md:py-32 scroll-fade">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+      <div>
+        <div class="meta text-accent mb-5">§ 04 · Convocatorias</div>
+        <h2 class="display-xl text-4xl md:text-[78px]">
+          Próximos<br>
+          <span class="font-italic-serif">encuentros.</span>
+        </h2>
+      </div>
+      <div class="meta text-ink-mute">Admisión por confirmación individual</div>
+    </div>
+
+    <ul class="divide-y" style="border-color: var(--rule);">
+      <!-- item -->
+      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
+        <div class="col-span-3 md:col-span-2">
+          <div class="meta text-ink-mute mb-2">05 Jun</div>
+          <div class="font-display text-4xl md:text-5xl">05</div>
+          <div class="meta text-accent mt-1">Jun · MMXXVI</div>
+        </div>
+        <div class="col-span-9 md:col-span-7">
+          <div class="meta text-ink-mute mb-3">Convocatoria trimestral · Barcelona</div>
+          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">NIS2, DORA y la responsabilidad personal del CISO. Un año después.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Mesa plenaria con revisión de casos reales de sanción e interpretación efectiva por parte de las autoridades competentes. Chatham House.</p>
+        </div>
+        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
+          <div class="meta text-ink-mute">Sede · 18:30 · Plazas limitadas</div>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
+        <div class="col-span-3 md:col-span-2">
+          <div class="font-display text-4xl md:text-5xl">27</div>
+          <div class="meta text-accent mt-1">Jun · MMXXVI</div>
+        </div>
+        <div class="col-span-9 md:col-span-7">
+          <div class="meta text-ink-mute mb-3">Círculo de pares · Madrid</div>
+          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">IA generativa en la función de seguridad. Adopción disciplinada.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Sesión cerrada a ocho plazas. Arquitecturas implantadas, controles efectivos, errores propios. Sin presentaciones.</p>
+        </div>
+        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
+          <div class="meta text-ink-mute">Sede · 17:00 · Cupo agotado</div>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
+        <div class="col-span-3 md:col-span-2">
+          <div class="font-display text-4xl md:text-5xl">11</div>
+          <div class="meta text-accent mt-1">Jul · MMXXVI</div>
+        </div>
+        <div class="col-span-9 md:col-span-7">
+          <div class="meta text-ink-mute mb-3">Publicación · Anuario</div>
+          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">Revisión trimestral del sector. Edición de verano.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Edición número siete. Informe de posición sobre la revisión de la Directiva de Productos Conectados y su impacto industrial.</p>
+        </div>
+        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
+          <div class="meta text-ink-mute">Envío impreso a miembros</div>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
+        <div class="col-span-3 md:col-span-2">
+          <div class="font-display text-4xl md:text-5xl">24</div>
+          <div class="meta text-accent mt-1">Sep · MMXXVI</div>
+        </div>
+        <div class="col-span-9 md:col-span-7">
+          <div class="meta text-ink-mute mb-3">Convocatoria trimestral · Bilbao</div>
+          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">Seguridad industrial y convergencia OT. Lo que aún no funciona.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Sesión conjunta con miembros invitados del tejido industrial del norte. Enfoque operativo, no teórico.</p>
+        </div>
+        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
+          <div class="meta text-ink-mute">Sede industrial · Jornada completa</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="mt-16 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+      <p class="font-display text-2xl leading-snug max-w-xl">
+        La asistencia requiere <span class="font-italic-serif text-accent">confirmación individual</span> por parte de la secretaría.
+      </p>
+      <a href="#membresia" class="btn-ghost">Solicitar confirmación</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ——————————— PUBLICACIONES ——————————— -->
+<section id="publicaciones" class="px-6 md:px-14 py-24 md:py-32 scroll-fade">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
+
+    <div class="md:col-span-4">
+      <div class="meta text-accent mb-5">§ 05 · Publicaciones</div>
+      <h2 class="display-xl text-4xl md:text-[64px]">
+        Escrito<br>
+        <span class="font-italic-serif">por miembros.</span>
+      </h2>
+      <p class="mt-8 text-ink-soft leading-[1.7] text-[16px]">
+        La revisión trimestral y los informes de posición se redactan y revisan por los propios miembros. No publicamos contenido patrocinado. No enviamos nuestras ediciones a listas compradas.
+      </p>
+    </div>
+
+    <div class="md:col-span-7 md:col-start-6 space-y-8">
+
+      <article class="hairline-t pt-6 flex gap-6 md:gap-10">
+        <div class="font-display text-5xl md:text-6xl text-accent flex-shrink-0">07</div>
+        <div class="flex-1">
+          <div class="meta text-ink-mute mb-2">Revisión trimestral · Jul MMXXVI</div>
+          <h3 class="font-display text-2xl md:text-3xl leading-tight mb-2">El CISO ante la responsabilidad personal. Tres años de jurisprudencia.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed">Análisis comparado de resoluciones en España, Alemania y Reino Unido. Coautoría de cuatro miembros.</p>
+        </div>
+      </article>
+
+      <article class="hairline-t pt-6 flex gap-6 md:gap-10">
+        <div class="font-display text-5xl md:text-6xl text-ink-mute flex-shrink-0">06</div>
+        <div class="flex-1">
+          <div class="meta text-ink-mute mb-2">Revisión trimestral · Abr MMXXVI</div>
+          <h3 class="font-display text-2xl md:text-3xl leading-tight mb-2">Gasto en seguridad. Qué compramos, qué funciona, qué se retira.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed">Encuesta anónima entre miembros sobre eficacia percibida de catorce categorías de producto.</p>
+        </div>
+      </article>
+
+      <article class="hairline-t pt-6 flex gap-6 md:gap-10">
+        <div class="font-display text-5xl md:text-6xl text-ink-mute flex-shrink-0">05</div>
+        <div class="flex-1">
+          <div class="meta text-ink-mute mb-2">Informe de posición · Feb MMXXVI</div>
+          <h3 class="font-display text-2xl md:text-3xl leading-tight mb-2">Consulta pública sobre revisión de NIS2. Posición colegiada.</h3>
+          <p class="text-ink-soft text-[15px] leading-relaxed">Documento firmado por 126 miembros y elevado a la autoridad competente.</p>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ——————————— MEMBRESÍA ——————————— -->
+<section id="membresia" class="bg-ink text-paper hairline-t px-6 md:px-14 py-24 md:py-36 relative overflow-hidden" style="color: var(--paper);">
+
+  <!-- decorative sigil -->
+  <div aria-hidden="true" class="absolute -right-20 -bottom-32 font-italic-serif text-[clamp(18rem,40vw,40rem)] leading-none opacity-[0.06]" style="color: var(--paper);">C</div>
+
+  <div class="max-w-[1400px] mx-auto relative">
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 mb-14 md:mb-20">
+      <div class="md:col-span-5">
+        <div class="meta mb-5" style="color: var(--paper-deep); opacity: 0.6">§ 06 · Membresía</div>
+        <h2 class="display-xl text-4xl md:text-[78px]" style="color: var(--paper);">
+          Por<br>
+          <span class="font-italic-serif" style="color: var(--paper-deep);">invitación.</span>
+        </h2>
+      </div>
+      <div class="md:col-span-6 md:col-start-7 self-end">
+        <p class="leading-[1.72] text-[17px]" style="color: var(--paper-deep);">
+          La membresía se extiende por nominación de dos miembros activos y revisión por el vocal de admisiones. No existe cuota de entrada. La cuota anual, simbólica, cubre exclusivamente los costes operativos de la asociación.
+        </p>
+      </div>
+    </div>
+
+    <!-- process -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16 md:mb-20">
+      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
+        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">i.</div>
+        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Nominación</h4>
+        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Dos miembros activos presentan al candidato ante el vocal de admisiones.</p>
+      </div>
+      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
+        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">ii.</div>
+        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Revisión</h4>
+        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Verificación del rol en activo y conversación de una hora con dos miembros del consejo.</p>
+      </div>
+      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
+        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">iii.</div>
+        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Admisión</h4>
+        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Votación del consejo rector. La admisión requiere mayoría simple. Las decisiones no se motivan.</p>
+      </div>
+      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
+        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">iv.</div>
+        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Juramento</h4>
+        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Firma del compromiso de confidencialidad y asistencia a la primera convocatoria trimestral.</p>
+      </div>
+    </div>
+
+    <!-- application form -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <h3 class="font-display text-3xl md:text-4xl leading-tight" style="color: var(--paper);">
+          Solicitud<br>
+          <span class="font-italic-serif" style="color: var(--paper-deep);">de contacto.</span>
+        </h3>
+        <p class="mt-5 text-[15px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.8;">
+          Si es responsable de seguridad en activo y desea ser considerado, puede dejar sus datos aquí. Contactaremos únicamente desde el dominio <span class="font-mono" style="color: var(--paper);">secretaria@cisoconnect.es</span>.
+        </p>
+      </div>
+      <form class="md:col-span-6 md:col-start-7 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2" onsubmit="return false;" style="color: var(--paper);">
+        <label class="md:col-span-1">
+          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Nombre completo</span>
+          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="text" placeholder="">
+        </label>
+        <label class="md:col-span-1">
+          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Correo corporativo</span>
+          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="email" placeholder="">
+        </label>
+        <label class="md:col-span-1">
+          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Organización</span>
+          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="text" placeholder="">
+        </label>
+        <label class="md:col-span-1">
+          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Cargo</span>
+          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="text" placeholder="">
+        </label>
+        <label class="md:col-span-2 mt-4">
+          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Perfil público (LinkedIn)</span>
+          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="url" placeholder="">
+        </label>
+        <div class="md:col-span-2 mt-10">
+          <button type="submit" class="inline-block px-8 py-4 meta" style="background: var(--paper); color: var(--ink); transition: background 0.3s ease;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--paper)';" onmouseout="this.style.background='var(--paper)'; this.style.color='var(--ink)';">
+            Enviar solicitud
+          </button>
+          <p class="mt-6 text-[12.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.55;">
+            Los datos se tratan en base al interés legítimo de la asociación, se conservan durante el proceso de admisión y se destruyen si no prospera. Conforme a RGPD y LOPDGDD.
+          </p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ——————————— FOOTER ——————————— -->
+<footer class="px-6 md:px-14 py-14 md:py-20">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-14">
+      <div class="md:col-span-5">
+        <div class="flex items-baseline gap-3 mb-4">
+          <span class="sigil">C</span>
+          <span class="font-display text-2xl">CISO Connect</span>
+        </div>
+        <p class="text-ink-soft text-[15px] leading-relaxed max-w-md">
+          Asociación independiente de responsables de seguridad de la información, fundada en 2024 y operada bajo regla de Chatham House.
+        </p>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="meta text-ink-mute mb-4">Asociación</div>
+        <ul class="space-y-2 text-[14.5px] text-ink-soft">
+          <li><a href="#manifiesto" class="link-reveal">Manifiesto</a></li>
+          <li><a href="#pilares" class="link-reveal">Pilares</a></li>
+          <li><a href="#consejo" class="link-reveal">Consejo</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="meta text-ink-mute mb-4">Actividad</div>
+        <ul class="space-y-2 text-[14.5px] text-ink-soft">
+          <li><a href="#convocatorias" class="link-reveal">Convocatorias</a></li>
+          <li><a href="#publicaciones" class="link-reveal">Publicaciones</a></li>
+          <li><a href="#membresia" class="link-reveal">Membresía</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="meta text-ink-mute mb-4">Secretaría</div>
+        <p class="text-[14.5px] text-ink-soft leading-relaxed">
+          Sede social: Madrid<br>
+          Subsedes: Barcelona, Bilbao<br>
+          <span class="font-mono text-[13px]">secretaria@cisoconnect.es</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="hairline-t pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="meta text-ink-mute">© MMXXIV–MMXXVI CISO Connect · Asociación sin ánimo de lucro</div>
+      <div class="meta text-ink-mute flex gap-6">
+        <a href="#" class="link-reveal">Aviso legal</a>
+        <a href="#" class="link-reveal">Privacidad</a>
+        <a href="#" class="link-reveal">Código deontológico</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+
+  // Active nav state based on scroll position
+  const sections = ['manifiesto', 'pilares', 'consejo', 'convocatorias', 'publicaciones'];
+  const navLinks = document.querySelectorAll('nav a.link-reveal');
+
+  window.addEventListener('scroll', () => {
+    let active = '';
+    const y = window.scrollY + 200;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= y) active = id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + active);
+    });
+  }, { passive: true });
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
