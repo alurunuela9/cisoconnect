@@ -1,833 +1,439 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CISO Connect · Asociación de Responsables de Seguridad de la Información</title>
-<meta name="description" content="Asociación independiente de CISOs en activo. Convocatorias privadas, asesoramiento entre pares, voz colectiva ante el regulador. Bajo regla de Chatham House.">
-<meta name="theme-color" content="#ece4d3">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071c2b">
+  <meta name="description" content="CISO Connect: una comunidad independiente para los profesionales que lideran la ciberseguridad. Comparte criterio, aprende con tus pares y da voz al rol del CISO.">
+  <title>CISO Connect | La comunidad de quienes lideran la ciberseguridad</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/roundtable.jpg" as="image" type="image/jpeg">
+  <style>
+    :root {
+      --ink:#071c2b; --deep:#0a2637; --deep-2:#103448; --paper:#f4f3ee;
+      --white:#fff; --muted:#5c6870; --line:#d9ddd9; --aqua:#9ce9df;
+      --aqua-strong:#79d8cb; --max:1240px;
+    }
+    *, *::before, *::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:88px; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,Helvetica,sans-serif; -webkit-font-smoothing:antialiased; }
+    body.menu-open { overflow:hidden; }
+    a { color:inherit; text-decoration:none; }
+    button, input, select, textarea { font:inherit; }
+    button { cursor:pointer; }
+    img { display:block; max-width:100%; }
+    :focus-visible { outline:3px solid #31bdae; outline-offset:4px; }
+    .wrap { width:min(calc(100% - 64px),var(--max)); margin-inline:auto; }
+    .skip { position:absolute; z-index:100; top:-80px; left:16px; padding:12px 16px; background:white; }
+    .skip:focus { top:12px; }
+    .eyebrow { display:flex; gap:12px; align-items:center; margin:0; font-size:11px; line-height:1.35; font-weight:700; text-transform:uppercase; letter-spacing:.17em; }
+    .eyebrow::before { content:""; width:28px; height:1px; flex:none; background:currentColor; opacity:.65; }
+    .section-head { display:flex; gap:40px; justify-content:space-between; align-items:end; margin-bottom:48px; }
+    .section-head h2, .narrative h2, .join h2, .contact h2 { font-size:clamp(36px,5vw,66px); line-height:1.045; letter-spacing:-.055em; font-weight:500; margin:17px 0 0; max-width:760px; }
+    .section-head p:last-child { max-width:360px; margin:0 0 4px; color:var(--muted); line-height:1.62; font-size:16px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:24px; min-height:50px; padding:0 21px; border:1px solid transparent; border-radius:4px; background:var(--aqua); color:var(--ink); font-size:13px; font-weight:700; transition:background .2s,transform .2s,border-color .2s; }
+    .btn:hover { background:var(--aqua-strong); transform:translateY(-2px); }
+    .btn svg { width:16px; height:16px; }
+    .btn-outline { background:transparent; color:var(--white); border-color:rgba(255,255,255,.5); }
+    .btn-outline:hover { background:rgba(255,255,255,.1); border-color:#fff; }
+    .text-link { display:inline-flex; gap:12px; align-items:center; width:max-content; padding-bottom:7px; border-bottom:1px solid currentColor; font-size:14px; font-weight:700; }
+    .text-link svg { width:16px; transition:transform .2s; }
+    .text-link:hover svg { transform:translateX(4px); }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+    .site-header { position:relative; z-index:20; background:var(--ink); color:var(--white); }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:84px; gap:20px; }
+    .brand { display:inline-flex; align-items:center; gap:12px; flex:none; color:white; }
+    .brand-symbol { position:relative; display:block; width:32px; height:32px; border:4px solid var(--aqua); border-right-color:transparent; border-radius:50%; transform:rotate(-30deg); }
+    .brand-symbol::after { content:""; position:absolute; inset:6px -9px 6px 13px; border-right:4px solid var(--aqua); transform:rotate(30deg); }
+    .brand-name { display:block; font-size:19px; line-height:1; font-weight:800; letter-spacing:-.045em; white-space:nowrap; }
+    .brand-name span { color:var(--aqua); }
+    .nav-links { display:flex; align-items:center; gap:31px; margin-left:auto; font-size:13px; font-weight:600; }
+    .nav-links a:not(.btn) { color:#cfdee1; transition:color .2s; }
+    .nav-links a:not(.btn):hover { color:white; }
+    .nav-links .btn { min-height:41px; margin-left:13px; padding:0 17px; }
+    .menu-toggle { display:none; width:43px; height:43px; border:1px solid #65818b; border-radius:3px; background:transparent; color:white; }
+    .menu-toggle svg { width:23px; height:23px; }
 
-<style>
-  :root {
-    --paper: #ece4d3;
-    --paper-deep: #e1d7bf;
-    --paper-dark: #d4c9ae;
-    --ink: #17171a;
-    --ink-soft: #3a3a3d;
-    --ink-mute: #7a7363;
-    --rule: #c7ba9e;
-    --accent: #5c1a20;
-    --accent-ink: #7a242c;
-  }
+    .hero { position:relative; overflow:hidden; background:var(--ink); color:var(--white); }
+    .hero::before { content:""; position:absolute; width:650px; height:650px; border:1px solid rgba(156,233,223,.12); border-radius:50%; top:-440px; left:-100px; pointer-events:none; }
+    .hero-grid { display:grid; grid-template-columns:47% 53%; min-height:620px; }
+    .hero-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:74px 52px 88px 0; position:relative; z-index:2; }
+    .hero .eyebrow { color:var(--aqua); }
+    h1 { max-width:680px; margin:30px 0 23px; font-size:clamp(49px,5.9vw,83px); line-height:.99; font-weight:500; letter-spacing:-.062em; }
+    h1 em { color:var(--aqua); font-family:Georgia,'Times New Roman',serif; font-weight:400; }
+    .hero-lead { max-width:492px; color:#c4d3d7; font-size:17px; line-height:1.65; margin:0; }
+    .hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:26px; margin-top:38px; }
+    .hero-visual { position:relative; min-height:620px; margin-right:calc((min(100vw,var(--max)) - 100vw) / 2); overflow:hidden; background:#42616c; }
+    .hero-visual img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; object-position:right center; filter:saturate(.82) contrast(1.03); }
+    .hero-visual::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(7,28,43,.22),transparent 40%),linear-gradient(0deg,rgba(7,28,43,.60),transparent 38%); }
+    .image-caption { position:absolute; z-index:2; right:29px; bottom:28px; display:flex; align-items:center; gap:11px; color:#fff; text-transform:uppercase; letter-spacing:.13em; font-size:10px; font-weight:700; }
+    .image-caption::before { content:""; width:34px; height:1px; background:var(--aqua); }
+    .hero-note { position:absolute; z-index:3; right:0; top:0; padding:18px 26px; background:var(--aqua); color:var(--ink); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.11em; }
+    .fact-bar { background:#103244; color:white; }
+    .fact-list { display:grid; grid-template-columns:repeat(3,1fr); }
+    .fact-list div { display:flex; align-items:center; gap:16px; min-height:92px; padding:15px 28px; border-left:1px solid rgba(255,255,255,.16); }
+    .fact-list div:first-child { padding-left:0; border-left:0; }
+    .fact-list strong { display:flex; width:31px; height:31px; flex:none; align-items:center; justify-content:center; border:1px solid var(--aqua); border-radius:50%; color:var(--aqua); font-size:15px; font-weight:400; }
+    .fact-list span { font-size:13px; font-weight:600; line-height:1.4; }
 
-  html, body { background: var(--paper); color: var(--ink); }
-  body {
-    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    font-feature-settings: 'ss01';
-  }
+    .narrative { padding:124px 0 128px; }
+    .narrative-grid { display:grid; grid-template-columns:.82fr 1.18fr; gap:10%; align-items:start; }
+    .narrative h2 { margin-bottom:31px; }
+    .narrative h2 em { font-family:Georgia,'Times New Roman',serif; font-weight:400; }
+    .narrative-body { padding-top:54px; }
+    .narrative-body p { max-width:590px; margin:0 0 29px; font-size:clamp(19px,2.15vw,26px); line-height:1.47; letter-spacing:-.028em; }
+    .narrative-body p + p { color:var(--muted); font-size:16px; letter-spacing:0; line-height:1.7; }
+    .narrative .text-link { margin-top:9px; }
 
-  /* paper grain overlay */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.4;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0 0.11 0 0 0 0.14 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
-  }
+    .values { padding:0 0 124px; }
+    .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid #bcc7c7; border-bottom:1px solid #bcc7c7; }
+    .value { min-height:260px; padding:30px 38px 35px; border-left:1px solid #bcc7c7; }
+    .value:first-child { border-left:0; padding-left:0; }
+    .value:last-child { padding-right:0; }
+    .value .num { display:block; color:#4e6268; font-size:11px; font-weight:700; letter-spacing:.15em; }
+    .value h3 { margin:39px 0 13px; font-size:25px; font-weight:500; letter-spacing:-.045em; }
+    .value p { max-width:310px; margin:0; color:var(--muted); font-size:14px; line-height:1.65; }
 
-  main, nav, footer, header { position: relative; z-index: 2; }
+    .editorial { background:var(--deep); color:white; }
+    .editorial-grid { display:grid; grid-template-columns:49% 51%; min-height:490px; }
+    .editorial-photo { min-height:490px; background:#557079; overflow:hidden; }
+    .editorial-photo img { width:100%; height:100%; object-fit:cover; object-position:center; filter:saturate(.8); }
+    .editorial-copy { display:flex; flex-direction:column; justify-content:center; padding:68px clamp(35px,7vw,110px); }
+    .editorial .eyebrow { color:var(--aqua); }
+    .editorial-copy h2 { max-width:600px; margin:27px 0 24px; font-size:clamp(36px,4.35vw,60px); font-weight:400; line-height:1.08; letter-spacing:-.055em; }
+    .editorial-copy h2 em { color:var(--aqua); font-family:Georgia,'Times New Roman',serif; }
+    .editorial-copy p:last-child { max-width:490px; color:#c8d6d8; font-size:15px; line-height:1.7; }
 
-  .font-display { font-family: 'Instrument Serif', ui-serif, Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
-  .font-italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
-  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .activities { padding:130px 0 140px; }
+    .activity-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#ced5d3; border:1px solid #ced5d3; }
+    .activity { min-height:280px; padding:32px 33px 34px; background:var(--paper); transition:background .2s; }
+    .activity:hover { background:#fff; }
+    .activity-top { display:flex; justify-content:space-between; align-items:start; }
+    .activity-top span { font-size:12px; color:#4e6268; letter-spacing:.09em; }
+    .activity-top svg { width:36px; height:36px; color:#248b89; stroke-width:1.4; }
+    .activity h3 { margin:55px 0 12px; font-size:22px; font-weight:500; letter-spacing:-.035em; }
+    .activity p { max-width:320px; margin:0; color:var(--muted); font-size:14px; line-height:1.65; }
 
-  .meta {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 400;
-  }
+    .join { padding:112px 0 120px; background:var(--ink); color:white; }
+    .join-grid { display:grid; grid-template-columns:1fr .95fr; gap:11%; align-items:start; }
+    .join .eyebrow { color:var(--aqua); }
+    .join h2 { margin-bottom:25px; }
+    .join-intro { max-width:490px; margin:0; color:#c7d6da; line-height:1.72; font-size:16px; }
+    .join .btn { margin-top:35px; }
+    .join-steps { margin:3px 0 0; padding:0; list-style:none; border-top:1px solid #41606b; }
+    .join-steps li { display:grid; grid-template-columns:48px 1fr; gap:20px; padding:25px 0 27px; border-bottom:1px solid #41606b; }
+    .join-steps span { color:var(--aqua); font-size:12px; font-weight:700; letter-spacing:.1em; }
+    .join-steps h3 { margin:0 0 7px; font-size:18px; font-weight:500; }
+    .join-steps p { margin:0; color:#bbccd0; font-size:14px; line-height:1.58; }
+    .join-foot { margin-top:22px; color:var(--aqua); font-size:13px; font-weight:700; }
 
-  .text-accent { color: var(--accent); }
-  .bg-accent { background: var(--accent); }
-  .bg-paper-deep { background: var(--paper-deep); }
-  .bg-paper-dark { background: var(--paper-dark); }
-  .text-ink-soft { color: var(--ink-soft); }
-  .text-ink-mute { color: var(--ink-mute); }
-  .border-rule { border-color: var(--rule); }
+    .faq { padding:112px 0 120px; }
+    .faq-grid { display:grid; grid-template-columns:.7fr 1.3fr; gap:12%; }
+    .faq h2 { margin:17px 0 0; font-size:clamp(36px,4.4vw,54px); letter-spacing:-.05em; font-weight:500; line-height:1.1; }
+    .faq-list { border-top:1px solid #b8c6c6; }
+    .faq details { border-bottom:1px solid #b8c6c6; }
+    .faq summary { display:flex; justify-content:space-between; align-items:center; gap:25px; padding:24px 0; cursor:pointer; list-style:none; font-size:18px; font-weight:500; letter-spacing:-.025em; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; flex:none; color:#248b89; font-size:25px; line-height:1; font-weight:300; }
+    .faq details[open] summary::after { content:"−"; }
+    .faq details p { max-width:650px; margin:-5px 40px 25px 0; color:var(--muted); font-size:15px; line-height:1.7; }
 
-  .hairline-t { border-top: 1px solid var(--rule); }
-  .hairline-b { border-bottom: 1px solid var(--rule); }
+    .contact { padding:120px 0; background:#e7ebe7; }
+    .contact-grid { display:grid; grid-template-columns:.82fr 1.18fr; gap:10%; }
+    .contact h2 { margin-bottom:24px; }
+    .contact-intro { max-width:400px; color:var(--muted); font-size:16px; line-height:1.67; }
+    .contact-methods { margin-top:58px; }
+    .contact-methods span { display:block; margin-bottom:9px; color:#455d62; text-transform:uppercase; font-size:11px; letter-spacing:.14em; font-weight:700; }
+    .contact-methods a { display:block; width:max-content; margin:0 0 31px; font-size:21px; letter-spacing:-.025em; border-bottom:1px solid #7a9999; padding-bottom:4px; }
+    .contact-methods a:hover { color:#137b77; }
+    .form-panel { padding:43px 44px 48px; background:white; box-shadow:0 20px 56px rgba(10,38,55,.055); }
+    .form-panel h3 { margin:0 0 7px; font-size:24px; font-weight:500; letter-spacing:-.035em; }
+    .form-panel > p { margin:0 0 29px; color:var(--muted); font-size:14px; line-height:1.5; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:21px 18px; }
+    .field-full { grid-column:1/-1; }
+    label { display:block; margin-bottom:8px; color:#263e4b; font-size:12px; font-weight:700; }
+    .required { color:#177f7b; }
+    input:not([type=checkbox]), select, textarea { display:block; width:100%; min-height:47px; padding:11px 12px; border:1px solid #bac8ca; border-radius:2px; background:#fbfcfb; color:var(--ink); font-size:14px; outline:none; transition:border-color .2s,box-shadow .2s; }
+    textarea { min-height:125px; resize:vertical; }
+    input:not([type=checkbox]):focus, select:focus, textarea:focus { border-color:#178b84; box-shadow:0 0 0 3px rgba(121,216,203,.2); }
+    input::placeholder, textarea::placeholder { color:#899a9e; }
+    .consent { display:flex; gap:11px; align-items:flex-start; margin:25px 0 21px; font-size:12px; line-height:1.6; color:#455860; }
+    .consent input { margin:3px 0 0; accent-color:#137d78; width:16px; height:16px; flex:none; }
+    .consent label { margin:0; font-weight:400; font-size:12px; color:inherit; }
+    .consent a { text-decoration:underline; text-underline-offset:2px; }
+    .form-actions { display:flex; flex-wrap:wrap; gap:15px; align-items:center; }
+    .form-actions .btn { border:0; }
+    .form-note { max-width:360px; color:#52666b; font-size:12px; line-height:1.5; }
+    .form-status { min-height:19px; margin:12px 0 0; color:#1a6f68; font-size:12px; }
 
-  .display-xl {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    line-height: 0.93;
-    letter-spacing: -0.025em;
-  }
+    .footer { padding:65px 0 28px; background:var(--ink); color:white; }
+    .footer-top { display:grid; grid-template-columns:1.35fr .8fr 1fr; gap:45px; padding-bottom:74px; }
+    .footer-tagline { max-width:370px; margin:25px 0 0; color:#b8cbd0; font-size:15px; line-height:1.65; }
+    .footer h3 { margin:2px 0 22px; color:var(--aqua); font-size:11px; text-transform:uppercase; letter-spacing:.16em; }
+    .footer-links { display:grid; gap:14px; font-size:13px; }
+    .footer-links a:hover { color:var(--aqua); }
+    .footer-bottom { display:flex; justify-content:space-between; gap:24px; border-top:1px solid #345061; padding-top:24px; color:#c0d0d4; font-size:12px; line-height:1.55; }
+    .footer-bottom p { margin:0; }
+    .legal-links { display:flex; gap:20px; }
+    .legal-links a:hover { color:white; }
+    .legal-content { background:#0d2a3b; color:#c2d1d5; }
+    .legal-content .wrap { display:grid; grid-template-columns:1fr 1fr; gap:55px; padding-block:30px; }
+    .legal-content h2 { margin:0 0 11px; font-size:15px; color:#fff; }
+    .legal-content p { margin:0; font-size:12px; line-height:1.7; }
+    .legal-content a { text-decoration:underline; }
 
-  .dropcap::first-letter {
-    font-family: 'Instrument Serif', serif;
-    float: left;
-    font-size: 5.4em;
-    line-height: 0.82;
-    padding: 0.08em 0.12em 0 0;
-    color: var(--accent);
-  }
-
-  .rise { opacity: 0; transform: translateY(16px); animation: rise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
-
-  .fade { opacity: 0; animation: fade 1.2s ease-out forwards; }
-  @keyframes fade { to { opacity: 1; } }
-
-  .link-reveal { position: relative; display: inline-block; }
-  .link-reveal::after {
-    content: '';
-    position: absolute; left: 0; right: 0; bottom: -3px;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .link-reveal:hover::after { transform: scaleX(1); }
-  .link-reveal.active::after { transform: scaleX(1); background: var(--accent); }
-
-  .card-hover { transition: background 0.5s ease; }
-  .card-hover:hover { background: var(--paper-dark); }
-
-  .pillar-num {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: var(--accent);
-    font-size: 2.75rem;
-    line-height: 1;
-  }
-
-  .btn-ink {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 18px 32px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    transition: background 0.3s ease;
-    display: inline-block;
-  }
-  .btn-ink:hover { background: var(--accent); }
-
-  .btn-ghost {
-    border: 1px solid var(--ink);
-    color: var(--ink);
-    padding: 17px 32px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    display: inline-block;
-  }
-  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
-
-  .sigil {
-    width: 38px; height: 38px;
-    border: 1px solid var(--ink);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .form-input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--rule);
-    padding: 14px 0;
-    font-family: 'Instrument Sans', sans-serif;
-    font-size: 16px;
-    color: var(--ink);
-    width: 100%;
-    transition: border-color 0.3s ease;
-    outline: none;
-  }
-  .form-input:focus { border-bottom-color: var(--accent); }
-  .form-input::placeholder { color: var(--ink-mute); }
-
-  .scroll-fade { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
-  .scroll-fade.in { opacity: 1; transform: translateY(0); }
-
-  /* emblem */
-  @keyframes emblem-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .emblem-spin {
-    transform-origin: 200px 200px;
-    animation: emblem-spin 180s linear infinite;
-  }
-  .emblem { color: var(--ink); }
-
-  @media (max-width: 768px) {
-    .dropcap::first-letter { font-size: 4.2em; }
-    .emblem-spin { animation-duration: 240s; }
-  }
-</style>
+    @media (max-width:1020px) {
+      .nav-links { gap:18px; }
+      .hero-grid { grid-template-columns:51% 49%; }
+      .hero-copy { padding-right:24px; }
+      .hero-visual { margin-right:-32px; }
+      .editorial-copy { padding-inline:45px; }
+      .join-grid { gap:7%; }
+    }
+    @media (max-width:760px) {
+      html { scroll-padding-top:68px; }
+      .wrap { width:min(calc(100% - 36px),var(--max)); }
+      .nav { height:68px; }
+      .brand-name { font-size:17px; }
+      .brand-symbol { width:29px; height:29px; }
+      .menu-toggle { display:grid; place-items:center; }
+      .nav-links { position:absolute; z-index:20; top:68px; left:0; right:0; display:none; flex-direction:column; align-items:stretch; gap:0; padding:14px 18px 25px; background:var(--ink); box-shadow:0 20px 30px rgba(0,0,0,.18); }
+      .nav-links.open { display:flex; }
+      .nav-links a:not(.btn) { padding:15px 3px; border-bottom:1px solid #345061; }
+      .nav-links .btn { margin:20px 0 0; }
+      .hero-grid { display:flex; flex-direction:column; min-height:0; }
+      .hero-copy { padding:80px 0 64px; }
+      h1 { max-width:600px; font-size:clamp(51px,9.5vw,78px); }
+      .hero-visual { min-height:420px; margin:0 -18px; }
+      .hero-note { right:18px; }
+      .fact-list { grid-template-columns:1fr; padding-block:9px; }
+      .fact-list div { min-height:56px; padding:10px 0; border-left:0; border-top:1px solid rgba(255,255,255,.14); }
+      .fact-list div:first-child { border-top:0; }
+      .narrative { padding:85px 0; }
+      .narrative-grid, .join-grid, .faq-grid, .contact-grid { grid-template-columns:1fr; gap:30px; }
+      .narrative-body { padding-top:0; }
+      .narrative-body p { font-size:21px; }
+      .values { padding-bottom:90px; }
+      .values-grid { grid-template-columns:1fr; }
+      .value, .value:first-child, .value:last-child { padding:26px 0; min-height:0; border-left:0; border-top:1px solid #bcc7c7; }
+      .value:first-child { border-top:0; }
+      .value h3 { margin-top:23px; }
+      .editorial-grid { grid-template-columns:1fr; }
+      .editorial-photo { min-height:360px; max-height:440px; }
+      .editorial-copy { padding:70px 18px 75px; }
+      .activities { padding:88px 0 95px; }
+      .section-head { display:block; margin-bottom:35px; }
+      .section-head p:last-child { margin-top:19px; }
+      .activity-grid { grid-template-columns:repeat(2,1fr); }
+      .activity { min-height:255px; padding:25px; }
+      .join { padding:84px 0 90px; }
+      .join-steps { margin-top:26px; }
+      .faq { padding:85px 0 90px; }
+      .contact { padding:86px 0; }
+      .contact-methods { margin-top:33px; }
+      .form-panel { padding:30px 26px; }
+      .footer-top { grid-template-columns:1fr 1fr; gap:50px 35px; padding-bottom:55px; }
+      .footer-top > div:first-child { grid-column:1/-1; }
+      .legal-content .wrap { grid-template-columns:1fr; gap:25px; }
+    }
+    @media (max-width:520px) {
+      .hero-copy { padding-top:68px; }
+      h1 { font-size:clamp(46px,11.5vw,60px); }
+      .hero-lead { font-size:15px; }
+      .hero-actions { align-items:flex-start; flex-direction:column; gap:22px; }
+      .hero-visual { min-height:320px; }
+      .hero-note { font-size:9px; padding:13px; }
+      .image-caption { font-size:9px; }
+      .section-head h2, .narrative h2, .join h2, .contact h2 { font-size:39px; }
+      .activity-grid { grid-template-columns:1fr; }
+      .activity { min-height:230px; }
+      .activity h3 { margin-top:40px; }
+      .form-grid { grid-template-columns:1fr; }
+      .form-panel { margin-inline:-6px; padding:27px 21px; }
+      .footer-top { grid-template-columns:1fr; gap:35px; }
+      .footer-top > div:first-child { grid-column:auto; }
+      .footer-bottom { flex-direction:column; }
+      .legal-links { flex-wrap:wrap; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition-duration:.01ms!important; animation-duration:.01ms!important; }
+    }
+  </style>
+  <noscript><style>@media (max-width:760px){.nav{height:auto;display:block;padding-block:18px}.menu-toggle{display:none}.nav-links{position:static;display:flex;box-shadow:none;padding:18px 0 0}.nav-links .btn{margin-top:14px}}</style></noscript>
 </head>
 <body>
-
-<!-- ——————————— NAV ——————————— -->
-<nav class="px-6 md:px-14 py-6 flex items-center justify-between hairline-b fade">
-  <a href="#top" class="flex items-baseline gap-3">
-    <span class="sigil" aria-hidden="true">C</span>
-    <span class="font-display text-[22px] leading-none">CISO Connect</span>
-  </a>
-  <div class="hidden lg:flex items-center gap-9 meta text-ink-soft">
-    <a href="#manifiesto" class="link-reveal">Manifiesto</a>
-    <a href="#pilares" class="link-reveal">Pilares</a>
-    <a href="#consejo" class="link-reveal">Consejo</a>
-    <a href="#convocatorias" class="link-reveal">Convocatorias</a>
-    <a href="#publicaciones" class="link-reveal">Publicaciones</a>
-  </div>
-  <a href="#membresia" class="meta text-accent link-reveal">Solicitar membresía →</a>
-</nav>
-
-<main id="top">
-
-<!-- ——————————— HERO ——————————— -->
-<section class="px-6 md:px-14 pt-12 md:pt-20 pb-20 md:pb-28">
-  <div class="max-w-[1400px] mx-auto">
-
-    <div class="flex items-center justify-between mb-10 md:mb-16 rise" style="animation-delay: 0.05s">
-      <div class="meta text-ink-mute">Vol. III · No. 2</div>
-      <div class="meta text-ink-mute hidden md:block">Madrid · Barcelona · Bilbao</div>
-      <div class="meta text-ink-mute">MMXXVI</div>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="CISO Connect, inicio"><span class="brand-symbol" aria-hidden="true"></span><span class="brand-name">CISO <span>CONNECT</span></span></a>
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Navegación principal">
+        <a href="#asociacion">La asociación</a><a href="#actividades">Qué hacemos</a><a href="#socios">Hazte socio</a><a href="#preguntas">Preguntas frecuentes</a>
+        <a class="btn" href="#contacto">Contacta <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></a>
+      </nav>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-center">
-
-      <!-- Headline -->
-      <h1 class="md:col-span-7 display-xl text-[clamp(2.25rem,5.6vw,5.5rem)] rise" style="animation-delay: 0.18s">
-        Una asociación <span class="font-italic-serif text-accent">de CISOs,</span><br>
-        convocada bajo regla<br>
-        de <span class="font-italic-serif">Chatham House.</span>
-      </h1>
-
-      <!-- Emblem -->
-      <div class="md:col-span-5 flex justify-center md:justify-end rise" style="animation-delay: 0.3s">
-        <svg viewBox="0 0 400 400" class="emblem w-full max-w-[380px]" xmlns="http://www.w3.org/2000/svg" aria-label="Sello institucional CISO Connect">
-          <defs>
-            <path id="arc-top" d="M 60,200 A 140,140 0 0,1 340,200" fill="none"/>
-            <path id="arc-bot" d="M 60,200 A 140,140 0 0,0 340,200" fill="none"/>
-          </defs>
-
-          <!-- Rotating group (outer ring, text, ticks) -->
-          <g class="emblem-spin">
-
-            <!-- Outer double ring -->
-            <circle cx="200" cy="200" r="196" fill="none" stroke="currentColor" stroke-width="1"/>
-            <circle cx="200" cy="200" r="188" fill="none" stroke="currentColor" stroke-width="0.4"/>
-
-            <!-- Rotating text top -->
-            <text font-family="'JetBrains Mono', ui-monospace, monospace" font-size="11" letter-spacing="3.5" fill="currentColor">
-              <textPath href="#arc-top" startOffset="50%" text-anchor="middle">
-                CISO CONNECT · ASOCIACIÓN · MMXXVI
-              </textPath>
-            </text>
-            <!-- Rotating text bottom -->
-            <text font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" letter-spacing="3" fill="currentColor">
-              <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">
-                CHATHAM HOUSE · MADRID · BARCELONA · BILBAO
-              </textPath>
-            </text>
-
-            <!-- Ornamental dots at 3 and 9 o'clock -->
-            <circle cx="22" cy="200" r="2" fill="currentColor"/>
-            <circle cx="378" cy="200" r="2" fill="currentColor"/>
-
-            <!-- Inner ring -->
-            <circle cx="200" cy="200" r="158" fill="none" stroke="currentColor" stroke-width="0.4"/>
-
-            <!-- Radial ticks: 9 (one per council member) -->
-            <g stroke="currentColor" stroke-width="0.9" fill="none">
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(0 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(40 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(80 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(120 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(160 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(200 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(240 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(280 200 200)"/>
-              <line x1="200" y1="48" x2="200" y2="60" transform="rotate(320 200 200)"/>
-            </g>
-          </g>
-
-          <!-- Static concentric rings (subtle target/ripple motif) -->
-          <g fill="none" stroke="currentColor">
-            <circle cx="200" cy="200" r="120" stroke-width="0.3" stroke-dasharray="1 3"/>
-            <circle cx="200" cy="200" r="96" stroke-width="0.3"/>
-            <circle cx="200" cy="200" r="70" stroke-width="0.3"/>
-          </g>
-
-          <!-- Center monogram -->
-          <text x="200" y="232" font-family="'Instrument Serif', ui-serif, Georgia, serif" font-style="italic" font-size="108" text-anchor="middle" fill="#5c1a20" letter-spacing="-4">CC</text>
-
-          <!-- Motto -->
-          <text x="200" y="268" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="8" letter-spacing="4" text-anchor="middle" fill="currentColor">INTER · PARES</text>
-
-        </svg>
-      </div>
-
-    </div>
-
-    <!-- Sub-hero strip -->
-    <div class="mt-16 md:mt-20 hairline-t pt-8 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 rise" style="animation-delay: 0.5s">
-      <div class="md:col-span-4">
-        <div class="meta text-ink-mute mb-3">Qué somos</div>
-        <p class="font-display text-2xl leading-tight">
-          Un espacio privado de deliberación entre responsables de seguridad en activo.
-        </p>
-      </div>
-      <div class="md:col-span-4 md:col-start-6">
-        <div class="meta text-ink-mute mb-3">Qué no somos</div>
-        <p class="text-ink-soft text-[17px] leading-relaxed">
-          No somos una comunidad abierta. Ni un foro patrocinado. Ni un grupo de influencia comercial. No aceptamos financiación de proveedores.
-        </p>
-      </div>
-      <div class="md:col-span-3 md:col-start-10 flex md:justify-end items-start">
-        <a href="#membresia" class="btn-ink">Proceso de admisión</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ——————————— STATS STRIP ——————————— -->
-<section class="hairline-t hairline-b bg-paper-deep">
-  <div class="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4">
-    <div class="p-8 md:p-10 border-r hairline-b md:hairline-b-0" style="border-right-color: var(--rule); border-right-width: 1px;">
-      <div class="meta text-ink-mute mb-3">Fundada</div>
-      <div class="font-display text-4xl md:text-5xl">2024</div>
-    </div>
-    <div class="p-8 md:p-10" style="border-right: 1px solid var(--rule);">
-      <div class="meta text-ink-mute mb-3">Miembros activos</div>
-      <div class="font-display text-4xl md:text-5xl">180<span class="text-accent font-italic-serif text-3xl">.</span></div>
-    </div>
-    <div class="p-8 md:p-10" style="border-right: 1px solid var(--rule); border-top: 1px solid var(--rule);" class="md:!border-t-0">
-      <div class="meta text-ink-mute mb-3">Industrias</div>
-      <div class="font-display text-4xl md:text-5xl">22</div>
-    </div>
-    <div class="p-8 md:p-10" style="border-top: 1px solid var(--rule);">
-      <div class="meta text-ink-mute mb-3">Financiación externa</div>
-      <div class="font-display text-4xl md:text-5xl font-italic-serif text-accent">Ninguna.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ——————————— MANIFIESTO ——————————— -->
-<section id="manifiesto" class="px-6 md:px-14 py-24 md:py-36 scroll-fade">
-  <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
-
-    <div class="md:col-span-3">
-      <div class="meta text-accent mb-5">§ 01 · Manifiesto</div>
-      <h2 class="display-xl text-4xl md:text-5xl">
-        Por qué<br>
-        <span class="font-italic-serif">existimos.</span>
-      </h2>
-    </div>
-
-    <div class="md:col-span-8 md:col-start-5">
-      <p class="dropcap text-[17px] md:text-lg leading-[1.72] text-ink-soft">
-        El CISO es uno de los responsables más expuestos del organigrama moderno, y ocupa al mismo tiempo uno de los puestos con menor red de iguales. Entre consejos de administración, reguladores, proveedores y equipos propios, el espacio para la deliberación franca entre pares se ha ido reduciendo hasta casi desaparecer.
-      </p>
-      <p class="mt-7 text-[17px] md:text-lg leading-[1.72] text-ink-soft">
-        CISO Connect recupera ese espacio. Somos una asociación de profesionales en activo, convocada por nosotros mismos, sin intermediarios ni agenda comercial, y operada bajo regla de Chatham House desde su primer acto.
-      </p>
-      <p class="mt-7 text-[17px] md:text-lg leading-[1.72] text-ink-soft">
-        Nuestro compromiso es con el oficio, no con su mercado. Con la decisión difícil, no con el titular cómodo. Con el interés del miembro, no con el del patrocinador.
-      </p>
-
-      <blockquote class="mt-12 pl-7 border-l-2 border-rule font-italic-serif text-2xl md:text-[34px] leading-[1.25] text-ink">
-        "La confidencialidad entre pares no es un privilegio. Es la condición mínima para que cualquier conversación útil sobre seguridad pueda tener lugar."
-      </blockquote>
-      <p class="meta text-ink-mute mt-5">— Acta fundacional, marzo de 2024</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ——————————— PILARES ——————————— -->
-<section id="pilares" class="bg-paper-deep hairline-t hairline-b px-6 md:px-14 py-24 md:py-32 scroll-fade">
-  <div class="max-w-[1400px] mx-auto">
-
-    <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
-      <div>
-        <div class="meta text-accent mb-5">§ 02 · Pilares</div>
-        <h2 class="display-xl text-4xl md:text-[78px]">Cómo operamos.</h2>
-      </div>
-      <div class="meta text-ink-mute">Cuatro líneas · Una asociación</div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-px" style="background: var(--rule);">
-      <!-- I -->
-      <article class="bg-paper-deep p-8 md:p-12 card-hover">
-        <div class="pillar-num mb-6">I.</div>
-        <h3 class="font-display text-[32px] leading-tight mb-4">Convocatorias privadas</h3>
-        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
-          Encuentros trimestrales sin agenda comercial ni presencia de proveedores. Mesas reducidas, orden del día acordado entre miembros, actas anónimas. Cuatro ediciones al año en Madrid, Barcelona y Bilbao, con rotación bienal de sede.
-        </p>
-        <div class="mt-8 meta text-ink-mute">04 convocatorias / año</div>
-      </article>
-      <!-- II -->
-      <article class="bg-paper-deep p-8 md:p-12 card-hover">
-        <div class="pillar-num mb-6">II.</div>
-        <h3 class="font-display text-[32px] leading-tight mb-4">Asesoramiento entre pares</h3>
-        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
-          Círculos cerrados de seis a ocho miembros que se reúnen mensualmente para exponer decisiones difíciles: reorganizaciones, incidentes, presupuesto, relación con el consejo. Confidencialidad absoluta y moderación rotativa.
-        </p>
-        <div class="mt-8 meta text-ink-mute">12 sesiones / año · por círculo</div>
-      </article>
-      <!-- III -->
-      <article class="bg-paper-deep p-8 md:p-12 card-hover">
-        <div class="pillar-num mb-6">III.</div>
-        <h3 class="font-display text-[32px] leading-tight mb-4">Publicaciones e investigación</h3>
-        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
-          Revisión trimestral del estado del sector e informes de posición sobre regulación en curso. Escritos por miembros, revisados por miembros. Sin analistas externos. Sin patrocinadores. Sin secciones publicitarias.
-        </p>
-        <div class="mt-8 meta text-ink-mute">04 ediciones / año</div>
-      </article>
-      <!-- IV -->
-      <article class="bg-paper-deep p-8 md:p-12 card-hover">
-        <div class="pillar-num mb-6">IV.</div>
-        <h3 class="font-display text-[32px] leading-tight mb-4">Representación institucional</h3>
-        <p class="text-ink-soft leading-[1.7] text-[15.5px]">
-          Interlocución formal con INCIBE, CCN-CERT, AEPD y ENISA. La asociación articula una voz única en consultas públicas sobre NIS2, CRA, DORA y normativa derivada, con posiciones razonadas y firmadas colegiadamente.
-        </p>
-        <div class="mt-8 meta text-ink-mute">Consultas públicas · Posicionamientos</div>
-      </article>
-    </div>
-
-  </div>
-</section>
-
-<!-- ——————————— CONSEJO ——————————— -->
-<section id="consejo" class="px-6 md:px-14 py-24 md:py-36 scroll-fade">
-  <div class="max-w-[1400px] mx-auto">
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-14 md:mb-20">
-      <div class="md:col-span-5">
-        <div class="meta text-accent mb-5">§ 03 · Consejo rector</div>
-        <h2 class="display-xl text-4xl md:text-[78px]">
-          Elegidos<br>
-          <span class="font-italic-serif">entre iguales.</span>
-        </h2>
-      </div>
-      <div class="md:col-span-6 md:col-start-7 self-end">
-        <p class="text-ink-soft leading-[1.7] text-[17px]">
-          Nueve miembros del consejo rector, elegidos entre y por sus iguales, con rotación bienal y límite de dos mandatos. Todos ostentan responsabilidades ejecutivas en activo en compañías cotizadas, banca, sanidad, infraestructura crítica e industria.
-        </p>
-        <p class="text-ink-soft leading-[1.7] text-[17px] mt-4">
-          Por política interna, la afiliación de los miembros no se hace pública sin su consentimiento individual. Lo que sigue es la composición agregada del consejo.
-        </p>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-px hairline-t hairline-b" style="background: var(--rule);">
-
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-accent mb-4">Presidencia</div>
-        <div class="font-display text-2xl leading-tight mb-2">Global CISO</div>
-        <div class="text-ink-soft text-[14px]">Banca mayorista · IBEX</div>
-      </div>
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-accent mb-4">Vicepresidencia</div>
-        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
-        <div class="text-ink-soft text-[14px]">Utility cotizada · IBEX</div>
-      </div>
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-accent mb-4">Secretaría</div>
-        <div class="font-display text-2xl leading-tight mb-2">Director de Seguridad</div>
-        <div class="text-ink-soft text-[14px]">Infraestructura crítica</div>
-      </div>
-
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-ink-mute mb-4">Vocal · Publicaciones</div>
-        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
-        <div class="text-ink-soft text-[14px]">Industria farmacéutica</div>
-      </div>
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-ink-mute mb-4">Vocal · Regulación</div>
-        <div class="font-display text-2xl leading-tight mb-2">Head of Security</div>
-        <div class="text-ink-soft text-[14px]">Fintech regulada</div>
-      </div>
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-ink-mute mb-4">Vocal · Círculos</div>
-        <div class="font-display text-2xl leading-tight mb-2">Global CISO</div>
-        <div class="text-ink-soft text-[14px]">Retail internacional</div>
-      </div>
-
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-ink-mute mb-4">Vocal · Convocatorias</div>
-        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
-        <div class="text-ink-soft text-[14px]">Sanidad privada</div>
-      </div>
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-ink-mute mb-4">Vocal · Tesorería</div>
-        <div class="font-display text-2xl leading-tight mb-2">Director de Seguridad</div>
-        <div class="text-ink-soft text-[14px]">Aseguradora · IBEX</div>
-      </div>
-      <div class="bg-[color:var(--paper)] p-8 md:p-10 card-hover">
-        <div class="meta text-ink-mute mb-4">Vocal · Admisiones</div>
-        <div class="font-display text-2xl leading-tight mb-2">CISO</div>
-        <div class="text-ink-soft text-[14px]">Logística y transporte</div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ——————————— CONVOCATORIAS ——————————— -->
-<section id="convocatorias" class="bg-paper-deep hairline-t hairline-b px-6 md:px-14 py-24 md:py-32 scroll-fade">
-  <div class="max-w-[1400px] mx-auto">
-
-    <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
-      <div>
-        <div class="meta text-accent mb-5">§ 04 · Convocatorias</div>
-        <h2 class="display-xl text-4xl md:text-[78px]">
-          Próximos<br>
-          <span class="font-italic-serif">encuentros.</span>
-        </h2>
-      </div>
-      <div class="meta text-ink-mute">Admisión por confirmación individual</div>
-    </div>
-
-    <ul class="divide-y" style="border-color: var(--rule);">
-      <!-- item -->
-      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
-        <div class="col-span-3 md:col-span-2">
-          <div class="meta text-ink-mute mb-2">05 Jun</div>
-          <div class="font-display text-4xl md:text-5xl">05</div>
-          <div class="meta text-accent mt-1">Jun · MMXXVI</div>
+  </header>
+  <main id="main">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Una comunidad para líderes de ciberseguridad</p>
+          <h1 id="hero-title">Liderar mejor. <em>Juntos.</em></h1>
+          <p class="hero-lead">Conectamos a CISOs y responsables de seguridad para compartir experiencias, desarrollar criterio y dar más voz a la profesión.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#socios">Conoce cómo unirte <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></a>
+            <a class="text-link" href="#asociacion">Descubre la asociación <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></a>
+          </div>
         </div>
-        <div class="col-span-9 md:col-span-7">
-          <div class="meta text-ink-mute mb-3">Convocatoria trimestral · Barcelona</div>
-          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">NIS2, DORA y la responsabilidad personal del CISO. Un año después.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Mesa plenaria con revisión de casos reales de sanción e interpretación efectiva por parte de las autoridades competentes. Chatham House.</p>
+        <div class="hero-visual">
+          <img src="assets/roundtable.jpg" width="1400" height="935" alt="Profesionales participando en una reunión de trabajo" fetchpriority="high">
+          <span class="hero-note">Comunidad · Criterio · Voz</span>
+          <span class="image-caption">Imagen ilustrativa</span>
         </div>
-        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
-          <div class="meta text-ink-mute">Sede · 18:30 · Plazas limitadas</div>
-        </div>
-      </li>
+      </div>
+    </section>
+    <div class="fact-bar" aria-label="Datos de la asociación"><div class="wrap fact-list">
+      <div><strong aria-hidden="true">01</strong><span>Asociación sin ánimo de lucro</span></div>
+      <div><strong aria-hidden="true">02</strong><span>Afiliación gratuita</span></div>
+      <div><strong aria-hidden="true">03</strong><span>Para CISOs y responsables de seguridad en activo</span></div>
+    </div></div>
 
-      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
-        <div class="col-span-3 md:col-span-2">
-          <div class="font-display text-4xl md:text-5xl">27</div>
-          <div class="meta text-accent mt-1">Jun · MMXXVI</div>
-        </div>
-        <div class="col-span-9 md:col-span-7">
-          <div class="meta text-ink-mute mb-3">Círculo de pares · Madrid</div>
-          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">IA generativa en la función de seguridad. Adopción disciplinada.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Sesión cerrada a ocho plazas. Arquitecturas implantadas, controles efectivos, errores propios. Sin presentaciones.</p>
-        </div>
-        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
-          <div class="meta text-ink-mute">Sede · 17:00 · Cupo agotado</div>
-        </div>
-      </li>
+    <section class="narrative" id="asociacion" aria-labelledby="mission-title"><div class="wrap narrative-grid">
+      <div><p class="eyebrow">Nuestra razón de ser</p><h2 id="mission-title">Una profesión más fuerte empieza con una <em>voz compartida.</em></h2></div>
+      <div class="narrative-body">
+        <p>El CISO toma decisiones que afectan al negocio entero. Queremos que esa responsabilidad tenga la autonomía, los recursos y el reconocimiento que merece.</p>
+        <p>Somos una asociación sin ánimo de lucro que reúne a quienes lideran la ciberseguridad. Creamos espacios de confianza para aprender entre pares y promovemos el valor estratégico de la función ante organizaciones, administraciones y reguladores.</p>
+        <a class="text-link" href="#actividades">Así trabajamos <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></a>
+      </div>
+    </div></section>
 
-      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
-        <div class="col-span-3 md:col-span-2">
-          <div class="font-display text-4xl md:text-5xl">11</div>
-          <div class="meta text-accent mt-1">Jul · MMXXVI</div>
-        </div>
-        <div class="col-span-9 md:col-span-7">
-          <div class="meta text-ink-mute mb-3">Publicación · Anuario</div>
-          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">Revisión trimestral del sector. Edición de verano.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Edición número siete. Informe de posición sobre la revisión de la Directiva de Productos Conectados y su impacto industrial.</p>
-        </div>
-        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
-          <div class="meta text-ink-mute">Envío impreso a miembros</div>
-        </div>
-      </li>
+    <section class="values" aria-label="Nuestra propuesta de valor"><div class="wrap values-grid">
+      <article class="value"><span class="num">01 / CONEXIÓN</span><h3>Una red de confianza</h3><p>Habla con profesionales que conocen la responsabilidad de tu puesto y comparten retos similares.</p></article>
+      <article class="value"><span class="num">02 / DESARROLLO</span><h3>Aprendizaje útil</h3><p>Contrasta decisiones y participa en sesiones prácticas sobre gobierno, riesgo y liderazgo.</p></article>
+      <article class="value"><span class="num">03 / REPRESENTACIÓN</span><h3>Una voz para el CISO</h3><p>Impulsamos el reconocimiento de la función y su participación en las decisiones estratégicas.</p></article>
+    </div></section>
 
-      <li class="grid grid-cols-12 gap-6 py-8 md:py-10 group cursor-pointer hover:bg-paper-dark/40 transition" style="border-color: var(--rule);">
-        <div class="col-span-3 md:col-span-2">
-          <div class="font-display text-4xl md:text-5xl">24</div>
-          <div class="meta text-accent mt-1">Sep · MMXXVI</div>
-        </div>
-        <div class="col-span-9 md:col-span-7">
-          <div class="meta text-ink-mute mb-3">Convocatoria trimestral · Bilbao</div>
-          <h3 class="font-display text-2xl md:text-[32px] leading-tight mb-3">Seguridad industrial y convergencia OT. Lo que aún no funciona.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed max-w-2xl">Sesión conjunta con miembros invitados del tejido industrial del norte. Enfoque operativo, no teórico.</p>
-        </div>
-        <div class="col-span-12 md:col-span-3 flex md:justify-end md:items-end">
-          <div class="meta text-ink-mute">Sede industrial · Jornada completa</div>
-        </div>
-      </li>
-    </ul>
+    <section class="editorial" aria-labelledby="editorial-title"><div class="editorial-grid">
+      <div class="editorial-photo"><img src="assets/collaboration.jpg" width="1400" height="933" alt="Una persona comparte ideas durante una reunión de trabajo" loading="lazy"></div>
+      <div class="editorial-copy"><p class="eyebrow">Entre pares</p><h2 id="editorial-title">Las mejores conversaciones empiezan con <em>confianza.</em></h2><p>Una comunidad con espacio para preguntar, contrastar ideas y compartir lo aprendido en el trabajo real.</p></div>
+    </div></section>
 
-    <div class="mt-16 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-      <p class="font-display text-2xl leading-snug max-w-xl">
-        La asistencia requiere <span class="font-italic-serif text-accent">confirmación individual</span> por parte de la secretaría.
-      </p>
-      <a href="#membresia" class="btn-ghost">Solicitar confirmación</a>
+    <section class="activities" id="actividades" aria-labelledby="activities-title"><div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Qué hacemos</p><h2 id="activities-title">Conocimiento que se comparte.<br>Relaciones que perduran.</h2></div><p>Seis formas de conectar la experiencia de nuestra comunidad con los desafíos actuales de los CISOs.</p></div>
+      <div class="activity-grid">
+        <article class="activity"><div class="activity-top"><span>01 / DIÁLOGO</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><circle cx="14" cy="16" r="7"/><path d="M4 34c0-7 5-11 11-11s11 4 11 11M26 11h8m-8 6h8m-4 6h4"/></svg></div><h3>Mesas redondas</h3><p>Conversaciones en grupos reducidos sobre gobierno, NIS2 o gestión de crisis, bajo la regla de Chatham House.</p></article>
+        <article class="activity"><div class="activity-top"><span>02 / PRÁCTICA</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><rect x="5" y="7" width="30" height="22" rx="2"/><path d="M12 15h16M12 21h10M15 34h10m-5-5v5"/></svg></div><h3>Talleres</h3><p>Sesiones de trabajo sobre casos reales, ejercicios de crisis y cuadros de mando de riesgo.</p></article>
+        <article class="activity"><div class="activity-top"><span>03 / COMUNIDAD</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><circle cx="20" cy="10" r="4"/><circle cx="8" cy="30" r="4"/><circle cx="32" cy="30" r="4"/><path d="m17 13-7 13m13-13 7 13M12 30h16"/></svg></div><h3>Encuentros profesionales</h3><p>Reuniones entre profesionales de distintos sectores para construir una red de apoyo y confianza.</p></article>
+        <article class="activity"><div class="activity-top"><span>04 / EXPERIENCIA</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><circle cx="12" cy="13" r="5"/><circle cx="29" cy="13" r="5"/><path d="M4 33c0-7 3-11 8-11s8 4 8 11m1 0c0-7 3-11 8-11s8 4 8 11M19 15l3 3 5-6"/></svg></div><h3>Mentoría</h3><p>CISOs con experiencia acompañan a quienes asumen el liderazgo de seguridad por primera vez.</p></article>
+        <article class="activity"><div class="activity-top"><span>05 / CRECIMIENTO</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M5 34h30M9 34V24h6v10m5 0V17h6v17m5 0V8h5v26M8 15l8-7 7 4 10-9"/></svg></div><h3>Liderazgo</h3><p>Formación ejecutiva y acceso a certificaciones para reforzar el impacto de la función.</p></article>
+        <article class="activity"><div class="activity-top"><span>06 / IMPACTO</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor"><path d="M20 4 7 10v9c0 9 6 15 13 18 7-3 13-9 13-18v-9L20 4Z"/><path d="m14 20 4 4 8-9"/></svg></div><h3>Representación</h3><p>Defendemos el reconocimiento del CISO ante administraciones, reguladores y órganos de gobierno.</p></article>
+      </div>
+    </div></section>
+
+    <section class="join" id="socios" aria-labelledby="join-title"><div class="wrap join-grid">
+      <div><p class="eyebrow">Forma parte</p><h2 id="join-title">Tu experiencia aporta. Tu comunidad también.</h2><p class="join-intro">La asociación está abierta a CISOs y responsables de ciberseguridad en activo. La afiliación es gratuita y la junta directiva revisa cada solicitud.</p><a class="btn" href="#contacto" data-intent="membership">Solicita unirte <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></a></div>
+      <div><ol class="join-steps"><li><span>01</span><div><h3>Cuéntanos quién eres</h3><p>Indica tu nombre, cargo y organización mediante el formulario.</p></div></li><li><span>02</span><div><h3>Revisamos tu solicitud</h3><p>La junta directiva valora cada petición de adhesión.</p></div></li><li><span>03</span><div><h3>Te respondemos por email</h3><p>Nos pondremos en contacto contigo para explicarte los siguientes pasos.</p></div></li></ol><p class="join-foot">Sin cuota de afiliación.</p></div>
+    </div></section>
+
+    <section class="faq" id="preguntas" aria-labelledby="faq-title"><div class="wrap faq-grid">
+      <div><p class="eyebrow">Resolvemos tus dudas</p><h2 id="faq-title">Preguntas frecuentes</h2></div>
+      <div class="faq-list">
+        <details><summary>¿Qué es CISO Connect?</summary><p>Una asociación sin ánimo de lucro dedicada a apoyar a los responsables de ciberseguridad mediante conexión entre pares, formación y defensa profesional. Está inscrita en el Registro Nacional de Asociaciones con el número 632.635.</p></details>
+        <details><summary>¿Quién puede unirse?</summary><p>La asociación está abierta a CISOs y responsables de ciberseguridad en activo. La junta directiva revisa cada solicitud de adhesión.</p></details>
+        <details><summary>¿La afiliación tiene coste?</summary><p>No. La afiliación a CISO Connect es gratuita.</p></details>
+        <details><summary>¿Cómo puedo solicitar la adhesión?</summary><p>Escríbenos a contact@cisoconnect.io o utiliza el formulario. Incluye tu nombre, cargo y organización para que podamos revisar la solicitud y responderte.</p></details>
+      </div>
+    </div></section>
+
+    <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="wrap contact-grid">
+      <div><p class="eyebrow">Hablemos</p><h2 id="contact-title">Una conversación puede abrir muchas puertas.</h2><p class="contact-intro">¿Quieres unirte, proponer una colaboración o conocer mejor la asociación? Cuéntanos qué necesitas. Respondemos por email en días laborables.</p>
+        <div class="contact-methods"><span>Escríbenos</span><a href="mailto:contact@cisoconnect.io">contact@cisoconnect.io</a><span>Llámanos</span><a href="tel:+34638606324">+34 638 60 63 24</a></div>
+      </div>
+      <div class="form-panel"><h3>Contacta con nosotros</h3><p>Los campos marcados con * son obligatorios.</p>
+        <form id="contact-form" method="post" action="mailto:contact@cisoconnect.io" enctype="text/plain">
+          <div class="form-grid">
+            <div><label for="full-name">Nombre y apellidos <span class="required">*</span></label><input id="full-name" name="name" autocomplete="name" maxlength="100" required placeholder="Tu nombre"></div>
+            <div><label for="email">Correo electrónico <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" required placeholder="nombre@ejemplo.com"></div>
+            <div><label for="role">Cargo <span class="required membership-required" hidden>*</span></label><input id="role" name="role" autocomplete="organization-title" maxlength="120" placeholder="Tu cargo actual"></div>
+            <div><label for="organization">Organización <span class="required membership-required" hidden>*</span></label><input id="organization" name="organization" autocomplete="organization" maxlength="150" placeholder="Nombre de tu organización"></div>
+            <div class="field-full"><label for="subject">Motivo de contacto <span class="required">*</span></label><select id="subject" name="subject" required><option value="" selected disabled>Selecciona una opción</option><option>Quiero asociarme</option><option>Colaboración</option><option>Consulta general</option></select></div>
+            <div class="field-full"><label for="message">Mensaje (máx. 500 caracteres) <span class="required">*</span></label><textarea id="message" name="message" maxlength="500" required placeholder="Cuéntanos brevemente en qué podemos ayudarte"></textarea></div>
+          </div>
+          <div class="consent"><input id="privacy-consent" name="privacy" type="checkbox" required><label for="privacy-consent">He leído la <a href="#privacidad">información de privacidad</a> y acepto el tratamiento de mis datos para atender esta solicitud. <span class="required">*</span></label></div>
+          <div class="form-actions"><button class="btn" type="submit">Preparar mensaje <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></button><span class="form-note">Se abrirá tu aplicación de correo para revisar y enviar el mensaje.</span></div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap">
+    <div class="footer-top"><div><a class="brand" href="#inicio" aria-label="CISO Connect, volver al inicio"><span class="brand-symbol" aria-hidden="true"></span><span class="brand-name">CISO <span>CONNECT</span></span></a><p class="footer-tagline">Conectamos a quienes lideran la ciberseguridad para fortalecer la profesión.</p></div>
+      <div><h3>Explora</h3><nav class="footer-links" aria-label="Navegación de pie de página"><a href="#asociacion">La asociación</a><a href="#actividades">Qué hacemos</a><a href="#socios">Hazte socio</a><a href="#preguntas">Preguntas frecuentes</a></nav></div>
+      <div><h3>Contacto</h3><div class="footer-links"><a href="mailto:contact@cisoconnect.io">contact@cisoconnect.io</a><a href="tel:+34638606324">+34 638 60 63 24</a><a href="#contacto">Formulario de contacto</a></div></div>
     </div>
-
-  </div>
-</section>
-
-<!-- ——————————— PUBLICACIONES ——————————— -->
-<section id="publicaciones" class="px-6 md:px-14 py-24 md:py-32 scroll-fade">
-  <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
-
-    <div class="md:col-span-4">
-      <div class="meta text-accent mb-5">§ 05 · Publicaciones</div>
-      <h2 class="display-xl text-4xl md:text-[64px]">
-        Escrito<br>
-        <span class="font-italic-serif">por miembros.</span>
-      </h2>
-      <p class="mt-8 text-ink-soft leading-[1.7] text-[16px]">
-        La revisión trimestral y los informes de posición se redactan y revisan por los propios miembros. No publicamos contenido patrocinado. No enviamos nuestras ediciones a listas compradas.
-      </p>
-    </div>
-
-    <div class="md:col-span-7 md:col-start-6 space-y-8">
-
-      <article class="hairline-t pt-6 flex gap-6 md:gap-10">
-        <div class="font-display text-5xl md:text-6xl text-accent flex-shrink-0">07</div>
-        <div class="flex-1">
-          <div class="meta text-ink-mute mb-2">Revisión trimestral · Jul MMXXVI</div>
-          <h3 class="font-display text-2xl md:text-3xl leading-tight mb-2">El CISO ante la responsabilidad personal. Tres años de jurisprudencia.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed">Análisis comparado de resoluciones en España, Alemania y Reino Unido. Coautoría de cuatro miembros.</p>
-        </div>
-      </article>
-
-      <article class="hairline-t pt-6 flex gap-6 md:gap-10">
-        <div class="font-display text-5xl md:text-6xl text-ink-mute flex-shrink-0">06</div>
-        <div class="flex-1">
-          <div class="meta text-ink-mute mb-2">Revisión trimestral · Abr MMXXVI</div>
-          <h3 class="font-display text-2xl md:text-3xl leading-tight mb-2">Gasto en seguridad. Qué compramos, qué funciona, qué se retira.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed">Encuesta anónima entre miembros sobre eficacia percibida de catorce categorías de producto.</p>
-        </div>
-      </article>
-
-      <article class="hairline-t pt-6 flex gap-6 md:gap-10">
-        <div class="font-display text-5xl md:text-6xl text-ink-mute flex-shrink-0">05</div>
-        <div class="flex-1">
-          <div class="meta text-ink-mute mb-2">Informe de posición · Feb MMXXVI</div>
-          <h3 class="font-display text-2xl md:text-3xl leading-tight mb-2">Consulta pública sobre revisión de NIS2. Posición colegiada.</h3>
-          <p class="text-ink-soft text-[15px] leading-relaxed">Documento firmado por 126 miembros y elevado a la autoridad competente.</p>
-        </div>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ——————————— MEMBRESÍA ——————————— -->
-<section id="membresia" class="bg-ink text-paper hairline-t px-6 md:px-14 py-24 md:py-36 relative overflow-hidden" style="color: var(--paper);">
-
-  <!-- decorative sigil -->
-  <div aria-hidden="true" class="absolute -right-20 -bottom-32 font-italic-serif text-[clamp(18rem,40vw,40rem)] leading-none opacity-[0.06]" style="color: var(--paper);">C</div>
-
-  <div class="max-w-[1400px] mx-auto relative">
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 mb-14 md:mb-20">
-      <div class="md:col-span-5">
-        <div class="meta mb-5" style="color: var(--paper-deep); opacity: 0.6">§ 06 · Membresía</div>
-        <h2 class="display-xl text-4xl md:text-[78px]" style="color: var(--paper);">
-          Por<br>
-          <span class="font-italic-serif" style="color: var(--paper-deep);">invitación.</span>
-        </h2>
-      </div>
-      <div class="md:col-span-6 md:col-start-7 self-end">
-        <p class="leading-[1.72] text-[17px]" style="color: var(--paper-deep);">
-          La membresía se extiende por nominación de dos miembros activos y revisión por el vocal de admisiones. No existe cuota de entrada. La cuota anual, simbólica, cubre exclusivamente los costes operativos de la asociación.
-        </p>
-      </div>
-    </div>
-
-    <!-- process -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 mb-16 md:mb-20">
-      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
-        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">i.</div>
-        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Nominación</h4>
-        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Dos miembros activos presentan al candidato ante el vocal de admisiones.</p>
-      </div>
-      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
-        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">ii.</div>
-        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Revisión</h4>
-        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Verificación del rol en activo y conversación de una hora con dos miembros del consejo.</p>
-      </div>
-      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
-        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">iii.</div>
-        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Admisión</h4>
-        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Votación del consejo rector. La admisión requiere mayoría simple. Las decisiones no se motivan.</p>
-      </div>
-      <div class="md:pr-6" style="border-top: 1px solid rgba(236, 228, 211, 0.2);">
-        <div class="font-display text-5xl pt-4 font-italic-serif" style="color: var(--paper-deep);">iv.</div>
-        <h4 class="meta mt-6 mb-3" style="color: var(--paper);">Juramento</h4>
-        <p class="text-[14.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.85;">Firma del compromiso de confidencialidad y asistencia a la primera convocatoria trimestral.</p>
-      </div>
-    </div>
-
-    <!-- application form -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
-      <div class="md:col-span-5">
-        <h3 class="font-display text-3xl md:text-4xl leading-tight" style="color: var(--paper);">
-          Solicitud<br>
-          <span class="font-italic-serif" style="color: var(--paper-deep);">de contacto.</span>
-        </h3>
-        <p class="mt-5 text-[15px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.8;">
-          Si es responsable de seguridad en activo y desea ser considerado, puede dejar sus datos aquí. Contactaremos únicamente desde el dominio <span class="font-mono" style="color: var(--paper);">secretaria@cisoconnect.es</span>.
-        </p>
-      </div>
-      <form class="md:col-span-6 md:col-start-7 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2" onsubmit="return false;" style="color: var(--paper);">
-        <label class="md:col-span-1">
-          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Nombre completo</span>
-          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="text" placeholder="">
-        </label>
-        <label class="md:col-span-1">
-          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Correo corporativo</span>
-          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="email" placeholder="">
-        </label>
-        <label class="md:col-span-1">
-          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Organización</span>
-          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="text" placeholder="">
-        </label>
-        <label class="md:col-span-1">
-          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Cargo</span>
-          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="text" placeholder="">
-        </label>
-        <label class="md:col-span-2 mt-4">
-          <span class="meta" style="color: var(--paper-deep); opacity: 0.7;">Perfil público (LinkedIn)</span>
-          <input class="form-input" style="color: var(--paper); border-bottom-color: rgba(236,228,211,0.3);" type="url" placeholder="">
-        </label>
-        <div class="md:col-span-2 mt-10">
-          <button type="submit" class="inline-block px-8 py-4 meta" style="background: var(--paper); color: var(--ink); transition: background 0.3s ease;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--paper)';" onmouseout="this.style.background='var(--paper)'; this.style.color='var(--ink)';">
-            Enviar solicitud
-          </button>
-          <p class="mt-6 text-[12.5px] leading-relaxed" style="color: var(--paper-deep); opacity: 0.55;">
-            Los datos se tratan en base al interés legítimo de la asociación, se conservan durante el proceso de admisión y se destruyen si no prospera. Conforme a RGPD y LOPDGDD.
-          </p>
-        </div>
-      </form>
-    </div>
-
-  </div>
-</section>
-
-</main>
-
-<!-- ——————————— FOOTER ——————————— -->
-<footer class="px-6 md:px-14 py-14 md:py-20">
-  <div class="max-w-[1400px] mx-auto">
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-14">
-      <div class="md:col-span-5">
-        <div class="flex items-baseline gap-3 mb-4">
-          <span class="sigil">C</span>
-          <span class="font-display text-2xl">CISO Connect</span>
-        </div>
-        <p class="text-ink-soft text-[15px] leading-relaxed max-w-md">
-          Asociación independiente de responsables de seguridad de la información, fundada en 2024 y operada bajo regla de Chatham House.
-        </p>
-      </div>
-
-      <div class="md:col-span-2">
-        <div class="meta text-ink-mute mb-4">Asociación</div>
-        <ul class="space-y-2 text-[14.5px] text-ink-soft">
-          <li><a href="#manifiesto" class="link-reveal">Manifiesto</a></li>
-          <li><a href="#pilares" class="link-reveal">Pilares</a></li>
-          <li><a href="#consejo" class="link-reveal">Consejo</a></li>
-        </ul>
-      </div>
-
-      <div class="md:col-span-2">
-        <div class="meta text-ink-mute mb-4">Actividad</div>
-        <ul class="space-y-2 text-[14.5px] text-ink-soft">
-          <li><a href="#convocatorias" class="link-reveal">Convocatorias</a></li>
-          <li><a href="#publicaciones" class="link-reveal">Publicaciones</a></li>
-          <li><a href="#membresia" class="link-reveal">Membresía</a></li>
-        </ul>
-      </div>
-
-      <div class="md:col-span-3">
-        <div class="meta text-ink-mute mb-4">Secretaría</div>
-        <p class="text-[14.5px] text-ink-soft leading-relaxed">
-          Sede social: Madrid<br>
-          Subsedes: Barcelona, Bilbao<br>
-          <span class="font-mono text-[13px]">secretaria@cisoconnect.es</span>
-        </p>
-      </div>
-    </div>
-
-    <div class="hairline-t pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <div class="meta text-ink-mute">© MMXXIV–MMXXVI CISO Connect · Asociación sin ánimo de lucro</div>
-      <div class="meta text-ink-mute flex gap-6">
-        <a href="#" class="link-reveal">Aviso legal</a>
-        <a href="#" class="link-reveal">Privacidad</a>
-        <a href="#" class="link-reveal">Código deontológico</a>
-      </div>
-    </div>
-
-  </div>
-</footer>
-
-<script>
-  // Scroll-triggered fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
-
-  document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
-
-  // Active nav state based on scroll position
-  const sections = ['manifiesto', 'pilares', 'consejo', 'convocatorias', 'publicaciones'];
-  const navLinks = document.querySelectorAll('nav a.link-reveal');
-
-  window.addEventListener('scroll', () => {
-    let active = '';
-    const y = window.scrollY + 200;
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.offsetTop <= y) active = id;
-    });
-    navLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + active);
-    });
-  }, { passive: true });
-
-  // Smooth anchor scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>
-
+    <div class="footer-bottom"><p>© <span id="year">2026</span> CISO Connect · Asociación sin ánimo de lucro · Registro Nacional de Asociaciones nº 632.635</p><div class="legal-links"><a href="#aviso-legal">Aviso legal</a><a href="#privacidad">Privacidad</a></div></div>
+  </div></footer>
+  <div class="legal-content"><div class="wrap">
+    <section id="aviso-legal" aria-labelledby="legal-title"><h2 id="legal-title">Aviso legal</h2><p>Titular: Asociación para el Fomento de la Figura del CISO y Responsable de Ciberseguridad – CISO Connect. NIF G25994534. Inscrita en el Registro Nacional de Asociaciones con el nº 632.635. Contacto: <a href="mailto:contact@cisoconnect.io">contact@cisoconnect.io</a>.</p></section>
+    <section id="privacidad" aria-labelledby="privacy-title"><h2 id="privacy-title">Información de privacidad</h2><p>Responsable: CISO Connect (NIF G25994534), <a href="mailto:contact@cisoconnect.io">contact@cisoconnect.io</a>. Tratamos nombre, correo, cargo, organización y mensaje para responder a tu consulta o gestionar tu solicitud de adhesión, sobre la base de tu consentimiento y, cuando proceda, la relación asociativa (art. 6.1.a y 6.1.b RGPD). No cedemos datos salvo obligación legal; los proveedores de correo actúan como encargados. Conservamos los datos durante el tiempo necesario para gestionar la solicitud o la condición de socio, más los plazos legales. Puedes ejercer acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo al correo indicado y reclamar ante la <a href="https://www.aepd.es/" rel="noopener noreferrer">AEPD</a>. Esta página no almacena el formulario ni utiliza cookies o analítica.</p></section>
+  </div></div>
+  <script>
+    (() => {
+      const menuButton = document.querySelector('.menu-toggle');
+      const navigation = document.querySelector('.nav-links');
+      menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!expanded));
+        menuButton.setAttribute('aria-label', expanded ? 'Abrir menú' : 'Cerrar menú');
+        navigation.classList.toggle('open', !expanded);
+        document.body.classList.toggle('menu-open', !expanded);
+      });
+      navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navigation.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Abrir menú');
+        document.body.classList.remove('menu-open');
+      }));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && navigation.classList.contains('open')) {
+          navigation.classList.remove('open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Abrir menú');
+          document.body.classList.remove('menu-open');
+          menuButton.focus();
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      const subjectField = document.getElementById('subject');
+      const memberFields = [document.getElementById('role'), document.getElementById('organization')];
+      subjectField.addEventListener('change', () => {
+        const joining = subjectField.value === 'Quiero asociarme';
+        memberFields.forEach(field => { field.required = joining; });
+        document.querySelectorAll('.membership-required').forEach(mark => { mark.hidden = !joining; });
+      });
+      document.querySelectorAll('[data-intent="membership"]').forEach(link => link.addEventListener('click', () => {
+        subjectField.value = 'Quiero asociarme';
+        subjectField.dispatchEvent(new Event('change'));
+      }));
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        const data = new FormData(form);
+        const subject = `[CISO Connect] ${data.get('subject')}`;
+        const body = [
+          `Nombre: ${data.get('name')}`, `Email: ${data.get('email')}`,
+          `Cargo: ${data.get('role')}`, `Organización: ${data.get('organization')}`,
+          `Motivo: ${data.get('subject')}`, '', String(data.get('message'))
+        ].join('\n');
+        status.textContent = 'Tu mensaje está preparado. Revísalo y envíalo desde tu aplicación de correo.';
+        window.location.href = `mailto:contact@cisoconnect.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    })();
+  </script>
 </body>
 </html>
